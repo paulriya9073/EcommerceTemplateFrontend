@@ -7,8 +7,7 @@ import logo from "/logo.png";
 import { LoadAdminImages } from "../../Actions/AdminImg";
 
 const ResetPassword = () => {
-
-  const {adminImages}=useSelector((status)=>status.adminImg)
+  const { adminImages } = useSelector((state) => state.adminImg);
   const navigate = useNavigate();
 
   const [newPassword, setNewPassword] = useState("");
@@ -16,9 +15,9 @@ const ResetPassword = () => {
   const dispatch = useDispatch();
   const params = useParams();
 
-  useEffect(()=>{
-    dispatch(LoadAdminImages())
-  },[dispatch])
+  useEffect(() => {
+    dispatch(LoadAdminImages());
+  }, [dispatch]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -38,17 +37,22 @@ const ResetPassword = () => {
   return (
     <div className="w-full h-screen flex justify-center items-center bg-blue-50">
       <div className="w-full max-w-md">
-        {/* Logo Section */}
-        <div id="logo" className="flex justify-center mb-6">
-        <Link to="/"><img className='w-36 h-20 md:w-48 md:h-28 ' src={adminImages[0]?.logoImg?.url} /></Link>
-      </div>
-        {/* Form Section */}
-        <form
-          className="bg-white shadow-xl border rounded-lg p-8 space-y-6"
-          onSubmit={submitHandler}
-        >
+        {/* Form Section with Logo Inside */}
+        <div className="bg-white shadow-xl border rounded-lg p-8 space-y-6">
+          {/* Logo Section Inside Form Container */}
+          <div id="logo" className="flex justify-center mb-4">
+            <Link to="/">
+              <img 
+                className="w-36 h-20 md:w-40 md:h-24" 
+                src={adminImages?.[0]?.logoImg?.url} 
+                alt="Logo" 
+              />
+            </Link>
+          </div>
+
           <h1 className="text-2xl font-semibold text-center">Reset Password</h1>
-          <div className="flex flex-col gap-4">
+          
+          <form className="flex flex-col gap-4" onSubmit={submitHandler}>
             <input
               className="p-3 border rounded-md border-blue-300 focus:outline-none focus:ring-2 bg-blue-50 focus:ring-blue-500 transition-all w-full"
               type="password"
@@ -80,8 +84,8 @@ const ResetPassword = () => {
                 Reset
               </button>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -19,11 +19,10 @@ const OrderDetails = () => {
 
   useEffect(()=>{
     dispatch(LoadSingleOrder(id))
-    // dispatch({type:"clearErrors"})
-  },[dispatch])
+  },[])
 
   const handleBack=()=>{
-    navigate('/account/myorders')
+    navigate('/account/dashboard')
   }
 
   const invoiceHandler = () => {
@@ -42,7 +41,7 @@ const OrderDetails = () => {
     else{
       dispatch(CancelOrder(id))
       toast.success("Order Canceled!!")
-      navigate('/account/myorders')
+      navigate('/account/dashboard')
     }
     
   }
@@ -55,7 +54,7 @@ const OrderDetails = () => {
         {/* Order Details */}
         <div className='max-w-96 md:max-w-4xl mx-auto bg-white p-6 shadow-lg rounded-md mb-6'>
           <h1 className='text-2xl font-semibold mb-6 text-gray-700'>View Order Details</h1>
-          <div className='grid grid-cols-1 gap-4'>
+          <div className='flex justify-evenly items-center gap-4 pb-4'>
             <div>
               <h2 className='text-lg font-medium text-gray-600'>Order Date</h2>
               <p className='text-gray-800'>{new Date(order?.createdAt).toLocaleDateString()}</p>

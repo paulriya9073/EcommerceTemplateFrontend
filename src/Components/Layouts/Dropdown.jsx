@@ -53,15 +53,15 @@ navigate('/')
             user.role === 'admin' ? (
               <ul>
                 <li className="px-4 py-2 md:text-xl"><Link to="/admin/dashboard">Dashboard</Link></li>
-                <li className="px-4 py-2 md:text-xl"><Link to="/admin/dashboard/myprofile">My Profile</Link></li>
+                {/* <li className="px-4 py-2 md:text-xl"><Link to="/admin/dashboard/myprofile">My Profile</Link></li> */}
                 <button className='px-4 py-2 md:text-xl' onClick={handleLogout}>Log Out</button>
               </ul>
             ) : (
               <ul>
-                <li className="px-4 py-2 md:text-xl"><Link to="/account/me">My Profile</Link></li>
-                <li className="px-4 py-2 md:text-xl"><Link to="/account/update/password">Update Password</Link></li>
+                <li className="px-4 py-2 md:text-xl"><Link to="/account/dashboard">Dashboard</Link></li>
+                {/* <li className="px-4 py-2 md:text-xl"><Link to="/account/update/password">Update Password</Link></li>
                 <li className="px-4 py-2 md:text-xl"><Link to='/account/addresses'>Saved Address</Link></li>
-                <li className="px-4 py-2 md:text-xl"><Link to='/account/myorders'>My Orders</Link></li>
+                <li className="px-4 py-2 md:text-xl"><Link to='/account/myorders'>My Orders</Link></li> */}
                 <button className='px-4 py-2 md:text-xl' onClick={handleLogout}>Log Out</button>
               </ul>
             )

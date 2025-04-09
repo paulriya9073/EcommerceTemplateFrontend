@@ -29,38 +29,8 @@ const BasePriceCalculator = () => {
 
     return (
         <>
-            <Navbar disableSearch={true} />
-            <div className="w-full h-auto grid grid-cols-12 bg-blue-50">
-                <aside
-                    className={`fixed top-0 left-0 z-40 w-full h-full bg-white transition-transform transform ${
-                        sidebarOpen ? "translate-x-0" : "-translate-x-full"
-                    } md:static md:translate-x-0 md:col-span-2`}
-                >
-                    <div className="relative">
-                        <AdminSidebar />
-                        <button
-                            className="absolute top-4 right-4 md:hidden text-black text-2xl p-2 rounded-full"
-                            onClick={toggleSidebar}
-                        >
-                            <FaArrowLeft />
-                        </button>
-                    </div>
-                </aside>
-                <div
-                    className={`md:col-span-10 h-full ${
-                        sidebarOpen ? "hidden md:block" : "col-span-12"
-                    }`}
-                >
-                    <div className="w-full h-16 md:h-24 text-xl md:text-3xl flex justify-center items-center">
-                        <h1 className="px-4 font-bold">Base Price Calculator</h1>
-                        <button
-                            className="md:hidden ml-auto mr-4"
-                            onClick={toggleSidebar}
-                        >
-                            <i className="ri-menu-line text-2xl"></i>
-                        </button>
-                    </div>
-                    <div className="flex flex-col items-center justify-center min-h-screen pb-8">
+
+                    <div className="h-full flex flex-col items-center pb-8">
                         <div className="bg-white p-6 rounded-lg shadow-md w-96">
                             <div className="mb-4">
                                 <label className="block text-gray-700 font-medium mb-2">
@@ -102,9 +72,7 @@ const BasePriceCalculator = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <Footer />
+  
         </>
     );
 };

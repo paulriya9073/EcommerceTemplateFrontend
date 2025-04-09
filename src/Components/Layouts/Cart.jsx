@@ -74,7 +74,7 @@ const Cart = () => {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto p-4">
+      <div className="w-full h-full mx-auto">
         {user ? (
           <>
             {user?.cart?.length === 0 ? (
@@ -82,7 +82,7 @@ const Cart = () => {
                 <img src="empty-cart.png" alt="Empty Cart" />
               </div>
             ) : (
-              <>
+              <div className='w-full h-full'>
                 {user?.cart?.map((cartItem, index) => {
                   const { product } = cartItem;
                   const { _id, productName, price, images, stock, ratings, numOfReviews } = product;
@@ -96,14 +96,14 @@ const Cart = () => {
                   return (
                     <div
                       key={cartItem._id}
-                      className="mb-6 border-b pb-6 flex flex-col md:flex-row items-center"
+                      className="my-6 border-b pb-6 flex flex-col md:flex-row items-center"
                     >
                       <Link
                         to={`/product/${_id}`}
-                        className="flex-shrink-0 w-full md:w-1/3 mb-4 md:mb-0 flex justify-center"
+                        className="flex-shrink-0 w-full md:w-56 p-4 flex justify-center"
                       >
                         <img
-                          className="w-48 h-48 object-contain"
+                          className="w-full object-contain"
                           src={images[0]?.url}
                           alt={productName}
                         />
@@ -198,7 +198,7 @@ const Cart = () => {
                     </button>
                   </div>
                 </div>
-              </>
+              </div>
             )}
           </>
         ) : (

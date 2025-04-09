@@ -155,50 +155,28 @@ const PieChart = () => {
 
     return (
         <>
-            <Navbar disableSearch={true} />
-            <div className='w-full h-auto bg-blue-50 grid grid-cols-12'>
-
-                <aside
-                    className={`fixed top-0 left-0 z-40 w-full h-full bg-white transition-transform transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:static md:translate-x-0 md:col-span-2`}
-                >
-                    <div className="relative">
-                        <AdminSidebar />
-                        <button
-                            className="absolute top-4 right-4 md:hidden text-black text-2xl p-2 rounded-full"
-                            onClick={toggleSidebar}
-                        >
-                            <FaArrowLeft />
-                        </button>
-                    </div>
-                </aside>
-                <div className={`md:col-span-10 h-full ${sidebarOpen ? 'hidden md:block' : 'col-span-12'}`}>
-                    <div className="w-full h-16 md:h-24 text-xl md:text-2xl flex justify-center items-center">
-                        <h1 className="px-4 mt-3 text-xl md:text-4xl md:font-bold">Pie Charts</h1>
-                        <button className="md:hidden ml-auto mr-4" onClick={toggleSidebar}>
-                            <i className="ri-menu-line text-2xl"></i>
-                        </button>
-                    </div>
+            
                     <div
-                        className="w-full mt-5 flex flex-col justify-center items-center gap-8 px-8 py-8 md:py-12"
+                        className="w-full mt-5 flex flex-col justify-center items-center gap-8 px-8 py-8 lg:py-12"
                     >
-                        <div className="w-[90vw] md:w-[50vw] bg-white flex flex-col justify-center items-center shadow-xl rounded-lg p-6">
-                            <h1 className="text-lg md:text-2xl font-semibold mb-4 text-gray-800">Categories</h1>
+                        <div className="w-[90vw] lg:w-[50vw] bg-white flex flex-col justify-center items-center shadow-xl rounded-lg p-6">
+                            <h1 className="text-lg lg:text-2xl font-semibold mb-4 text-gray-800">Categories</h1>
                             {catagoryData.every(item => item.value === 0) ? (
                                 <p className="text-gray-500">No data available right now.</p>
                             ) : (
                                 <BasicPie data={catagoryData} />
                             )}
                         </div>
-                        <div className="w-[90vw] md:w-[50vw] bg-white flex flex-col justify-center items-center shadow-xl rounded-lg p-6">
-                            <h1 className="text-lg md:text-2xl font-semibold mb-4 text-gray-800">Stock Status</h1>
+                        <div className="w-[90vw] lg:w-[50vw] bg-white flex flex-col justify-center items-center shadow-xl rounded-lg p-6">
+                            <h1 className="text-lg lg:text-2xl font-semibold mb-4 text-gray-800">Stock Status</h1>
                             {stockData.every(item => item.value === 0) ? (
                                 <p className="text-gray-500">No data available right now.</p>
                             ) : (
                                 <BasicPie data={stockData} />
                             )}
                         </div>
-                        <div className="w-[90vw] md:w-[50vw] bg-white flex flex-col justify-center items-center shadow-xl rounded-lg p-6">
-                            <h1 className="text-lg md:text-2xl font-semibold mb-4 text-gray-800">Order Status</h1>
+                        <div className="w-[90vw] lg:w-[50vw] bg-white flex flex-col justify-center items-center shadow-xl rounded-lg p-6">
+                            <h1 className="text-lg lg:text-2xl font-semibold mb-4 text-gray-800">Order Status</h1>
                             {orderData.every(item => item.value === 0) ? (
                                 <p className="text-gray-500">No data available right now.</p>
                             ) : (
@@ -207,12 +185,6 @@ const PieChart = () => {
                         </div>
 
                     </div>
-
-                </div>
-            </div>
-
-
-            <Footer />
         </>
     )
 }

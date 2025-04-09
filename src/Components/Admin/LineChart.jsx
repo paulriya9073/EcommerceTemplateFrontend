@@ -181,29 +181,7 @@ const LineChart = () => {
 
     return (
         <>
-            <Navbar disableSearch={true} />
-            <div className="w-full h-auto bg-blue-50 grid grid-cols-12">
-                <aside
-                    className={`fixed top-0 left-0 z-40 w-full h-full bg-white transition-transform transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:static md:translate-x-0 md:col-span-2`}
-                >
-                    <div className="relative">
-                        <AdminSidebar />
-                        <button
-                            className="absolute top-4 right-4 md:hidden text-black text-2xl p-2 rounded-full"
-                            onClick={toggleSidebar}
-                        >
-                            <FaArrowLeft />
-                        </button>
-                    </div>
-                </aside>
-                <div className={`md:col-span-10 h-full ${sidebarOpen ? 'hidden md:block' : 'col-span-12'}`}>
-                    <div className="w-full h-16 md:h-24 text-xl md:text-2xl flex justify-center items-center">
-                        <h1 className="px-4 mt-3 text-xl md:text-4xl md:font-bold">Line Charts</h1>
-                        <button className="md:hidden ml-auto mr-4" onClick={toggleSidebar}>
-                            <i className="ri-menu-line text-2xl"></i>
-                        </button>
-                    </div>
-                    <div className="w-full mt-5 flex flex-col justify-center items-center gap-8 px-8 py-8 md:py-12">
+                    <div className="h-full w-full mt-5 flex flex-col justify-center items-center gap-8 px-8 py-8 md:py-12">
                         <div className="w-full p-8 bg-white rounded-md shadow-md">
                             <h1 className="text-3xl font-bold text-center pb-6">Revenue Comparison</h1>
                             {totalRevenueData && totalRevenueData.datasets[0].data.some((value) => value > 0) ? (
@@ -231,9 +209,6 @@ const LineChart = () => {
                             )}
                         </div>
                     </div>
-                </div>
-            </div>
-            <Footer />
         </>
     );
 };

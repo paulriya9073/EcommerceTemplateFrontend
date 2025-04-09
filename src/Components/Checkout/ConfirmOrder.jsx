@@ -104,7 +104,7 @@ const ConfirmOrder = () => {
           if (verifyData.message) {
             toast.success(verifyData.message)
             dispatch(deleteCart())
-            navigate('/account/myorders')
+            navigate('/account/dashboard')
           }
         } catch (error) {
           console.error(error)
@@ -132,31 +132,40 @@ const ConfirmOrder = () => {
           <div className='w-full h-full flex flex-col pt-4 px-4'>
             <h1 className='text-xl md:text-2xl p-1'>Shipping Details</h1>
             <div className='h-auto bg-white flex flex-col p-4'>
-              <div className='flex flex-col md:gap-2 p-2'>
-                <div className='flex justify-between'>
-                  <div>
-                    <h1 className='text-[1.1rem] md:text-xl font-medium'>{address?.name}</h1>
-                    <h1 className='text-[1.1rem] md:text-xl font-medium'>{address?.phone}</h1>
-                  </div>
-                  {address ? (
-                    <Link to='/checkout/shipping' className='w-16 h-14 md:w-24 md:text-xl bg-blue-600 text-white rounded-md flex justify-center items-center'>
-                      Change
-                    </Link>
-                  ) : (
-                    <Link to='/checkout/shipping' className='w-16 h-14 md:w-24 md:text-xl bg-blue-600 text-white rounded-md flex justify-center items-center'>
-                      Select
-                    </Link>
-                  )}
-                </div>
-                <p className='text-[1rem] md:text-xl'>{address?.address}
-                  <br />
-                  {address?.city}
-                  <br />
-                  {address?.state}-{address?.pincode}
-                  <br />
-                  {address?.country}
-                </p>
-              </div>
+            <div className="flex flex-col gap-2 p-2">
+  <div className="flex justify-between items-start flex-wrap gap-2">
+    {address ? (
+      <div className="text-sm md:text-xl">
+        <h1 className="font-medium">{address.name}</h1>
+        <h1 className="font-medium">{address.phone}</h1>
+      </div>
+    ) : (
+      <div>
+        <h1 className="text-sm md:text-lg">No Address is selected</h1>
+      </div>
+    )}
+
+    <Link
+      to="/checkout/shipping"
+      className="w-20 md:w-24 h-10 md:h-14 text-sm md:text-base bg-blue-600 text-white rounded-md flex justify-center items-center"
+    >
+      {address ? 'Change' : 'Select'}
+    </Link>
+  </div>
+
+  {address && (
+    <p className="text-sm md:text-base leading-snug">
+      {address.address}
+      <br />
+      {address.city}
+      <br />
+      {address.state} - {address.pincode}
+      <br />
+      {address.country}
+    </p>
+  )}
+</div>
+
             </div>
           </div>
         </div>

@@ -51,30 +51,9 @@ const MyOrders = () => {
 
   return (
     <>
-      <Navbar />
-      <div className='w-full h-auto bg-blue-50 grid grid-cols-12'>
-      <aside
-          className={`fixed top-0 left-0 z-40 w-full h-full bg-white transition-transform transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:static md:translate-x-0 md:col-span-3`}
-        >
-          <div className="relative">
-            <UserSidebar/>
-            <button
-              className="absolute top-4 right-4 md:hidden text-black text-2xl p-2 rounded-full"
-              onClick={toggleSidebar}
-            >
-            <FaArrowLeft/>
-            </button>
-          </div>
-        </aside>
-
-                <div className={`md:col-span-9 h-full ${sidebarOpen ? 'hidden md:block' : 'col-span-12'}`}>
-                    <div className="w-full h-16 md:h-24 text-xl md:text-2xl flex justify-center items-center">
-                        <h1 className="px-4 md:text-3xl font-bold">My Orders</h1>
-                        <button className="md:hidden ml-auto mr-4" onClick={toggleSidebar}>
-                            <i className="ri-menu-line text-2xl"></i>
-                        </button>
-                    </div>
-          {myOrders && myOrders.length > 0 ? (
+    {/* my orders */}
+          <div className='h-full'>
+            {myOrders && myOrders.length > 0 ? (
             myOrders.slice(0, visibleOrders).map((order) => (
               <div key={order._id} className='mx-4 p-4 mb-8 pb-6 rounded-md shadow-md bg-white border-b border-gray-300'>
                 <div className='flex justify-between'>
@@ -137,11 +116,9 @@ const MyOrders = () => {
                       </button>
             </div>
           )}
-        </div>
 
-       
-      </div>
-      <Footer />
+          </div>
+      
     </>
   )
 }

@@ -32,12 +32,13 @@ const Home = () => {
       <Navbar />
       <div id="Home" className="h-full bg-blue-50">
         <div id="slider">
-          <Slider/>
+          <Slider />
         </div>
         <div className="h-full grid grid-cols-12">
-          <div className="col-span-1"></div>
-          <div className="col-span-10 py-5">
-            <div className="h-auto grid md:grid-cols-4 grid-cols-2 gap-5">
+
+
+          <div className="col-span-12 p-5">
+            <div className="h-auto mx-auto grid lg:grid-cols-4 grid-cols-2 gap-6 justify-items-center">
               {products &&
                 Object.values(products)
                   .slice(0, visibleProducts)
@@ -64,7 +65,8 @@ const Home = () => {
               )}
             </div>
           </div>
-          <div className="col-span-1"></div>
+
+
         </div>
       </div>
       <Footer />

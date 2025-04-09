@@ -6,6 +6,7 @@ import { DeleteOrderAdmin, LoadSingleOrder, UpdateShippingStatus } from '../../A
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { CreateInvoice } from '../../Actions/Invoice'
+import DeleteModal from '../Layouts/DeleteModal'
 
 const ShippingStatus = () => {
 
@@ -14,6 +15,8 @@ const ShippingStatus = () => {
   const { id } = useParams()
 
   const { order } = useSelector(state => state.order)
+      const [showDeleteModal, setShowDeleteModal] = React.useState(false);
+      
 
   const [shippingStatus, setShippingStatus] = useState("");
 
@@ -24,7 +27,20 @@ const ShippingStatus = () => {
     dispatch(LoadSingleOrder(id))
   }, [dispatch, id])
 
- 
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'Processing':
+        return 'text-yellow-500 bg-yellow-100';
+      case 'Shipped':
+        return 'text-orange-500 bg-orange-100';
+      case 'Delivered':
+        return 'text-green-500 bg-green-100';
+      case 'Canceled':
+        return 'text-red-500 bg-red-100';
+      default:
+        return 'text-gray-500 bg-gray-100';
+    }
+  };
 
   const handleStatusChange = (e) => {
     const newStatus = e.target.value;
@@ -50,11 +66,23 @@ const ShippingStatus = () => {
     navigate('/admin/dashboard/orders')
   }
 
-  const deleteHandler = () => {
+  const deleteOrderHandler = () => {
+   
     dispatch(DeleteOrderAdmin(id))
     toast.success('Order Deleted!')
+    setOrderToDelete(null)
+    closeDeleteModal();
     navigate('/admin/dashboard/orders')
+    
   }
+  const openDeleteModal = () => {
+    setShowDeleteModal(true);
+};
+
+const closeDeleteModal = () => {
+    setShowDeleteModal(false);
+};
+
   return (
     <>
       <Navbar />
@@ -104,18 +132,11 @@ const ShippingStatus = () => {
         <div className='max-w-96 md:max-w-4xl mx-auto bg-white p-6 shadow-lg rounded-md mb-6'>
           <h1 className='text-2xl font-semibold mb-2 text-gray-700'>Shipment Details</h1>
           <div className='flex flex-col md:flex-row md:justify-between h-20 mb-4 gap-2'>
-            <div className='w-48 flex gap-3 justify-center items-center'>
+            <div className='w-52 flex gap-3 justify-center items-center'>
               <h2 className='text-lg font-medium text-gray-600'>Status :</h2>
-              <select
-                value={order?.shippingStatus}
-                onChange={handleStatusChange}
-                className='p-2 border border-gray-300 rounded-md'
-              >
-                <option value="Processing" >Processing</option>
-                <option value="Shipped" >Shipped</option>
-                <option value="Delivered">Delivered</option>
-                <option className='text-red-600 bg-red-100' value="Canceled">Canceled</option>
-              </select>
+             
+               <div className={`py-2 rounded-md w-20 lg:w-32 text-center flex items-center justify-center gap-2 ${getStatusColor(order.shippingStatus)}`}>{order.shippingStatus}</div> 
+  
             </div>
             {order?.shippingStatus === "Delivered" ?
               (
@@ -212,12 +233,26 @@ const ShippingStatus = () => {
           <button
             // onClick={handleDeleteClick}
             className='bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-600 transition'
-            onClick={deleteHandler}>
+            onClick={()=>{
+              openDeleteModal();
+            }}>
             Delete Order
           </button>
         </div>
 
       </div>
+
+      {/* DeleteModal component */}
+                              {showDeleteModal && (
+                                  <DeleteModal 
+                                  heading={'Delete Order'}
+                                      title1="Are you sure you want to delete this order details?" 
+                                      title2="This action cannot be undone and all data of this order will be permanently deleted." 
+                                      onClose={closeDeleteModal}
+                                      deleteHandler={deleteOrderHandler}
+                                      buttonName={"Delete Order"}
+                                  />
+                              )}
       <Footer />
     </>
 

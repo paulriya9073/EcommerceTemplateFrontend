@@ -34,51 +34,51 @@ const ProductCard = ({ id, images, productName, numOfReviews, price, ratings }) 
   };
 
   return (
-    <div className="w-[40vw] md:w-60 bg-white shadow-xl border-2 rounded-lg flex flex-col justify-between p-4">
+    <div className="w-full max-w-xs bg-white shadow-xl border-2 rounded-lg flex flex-col justify-center items-center p-3 sm:p-4">
       {user?.role === "admin" ? (
-        <div className="flex-grow flex flex-col items-center">
+        <div className="flex-grow flex flex-col justify-center items-center w-full">
           <img
-            className="w-full h-48 md:h-52 object-contain mb-3 cursor-not-allowed"
+            className="w-full h-36 xs:h-40 sm:h-44 md:h-52 object-contain mb-2 sm:mb-3 cursor-not-allowed"
             src={images}
             alt={productName}
           />
-          <p className="text-sm md:text-base font-medium text-center">{productName}</p>
-          <div className="flex flex-col items-center gap-1 mt-2">
+          <p className="text-xs sm:text-sm md:text-base font-medium text-center line-clamp-2">{productName}</p>
+          <div className="flex flex-col items-center gap-1 mt-1 sm:mt-2">
             <div className="flex items-center gap-1">
-              <Rating {...options} />
-              <span className="text-sm md:text-base">{ratings.toFixed(1)}</span>
+              <Rating size="small" {...options} />
+              <span className="text-xs sm:text-sm md:text-base">{ratings.toFixed(1)}</span>
             </div>
-            <span className="text-xs md:text-sm text-gray-500">
+            <span className="text-xxs xs:text-xs md:text-sm text-gray-500">
               {numOfReviews} Reviews
             </span>
           </div>
-          <span className="text-lg font-semibold text-gray-700 mt-2">
+          <span className="text-base sm:text-lg font-semibold text-gray-700 mt-1 sm:mt-2">
             <div className="flex justify-center items-center">
-              <FaRupeeSign />
+              <FaRupeeSign className="text-sm sm:text-base" />
               {price}
             </div>
           </span>
         </div>
       ) : (
-        <Link className="flex-grow flex flex-col items-center" to={`/product/${id}`}>
+        <Link className="flex-grow flex flex-col items-center w-full" to={`/product/${id}`}>
           <img
-            className="w-full h-48 md:h-52 object-contain mb-3 transform transition-transform duration-300 hover:scale-105"
+            className="w-full h-36 xs:h-40 sm:h-44 md:h-52 object-contain mb-2 sm:mb-3 transform transition-transform duration-300 hover:scale-105"
             src={images}
             alt={productName}
           />
-          <p className="text-sm md:text-base font-medium text-center">{productName}</p>
-          <div className="flex flex-col items-center gap-1 mt-2">
+          <p className="text-xs sm:text-sm md:text-base font-medium text-center line-clamp-2">{productName}</p>
+          <div className="flex flex-col items-center gap-1 mt-1 sm:mt-2">
             <div className="flex items-center gap-1">
-              <Rating {...options} />
-              <span className="text-sm md:text-base">{ratings.toFixed(1)}</span>
+              <Rating size="small" {...options} />
+              <span className="text-xs sm:text-sm md:text-base">{ratings.toFixed(1)}</span>
             </div>
-            <span className="text-xs md:text-sm text-gray-500">
+            <span className="text-xxs xs:text-xs md:text-sm text-gray-500">
               {numOfReviews} Reviews
             </span>
           </div>
-          <span className="text-lg font-semibold text-gray-700 mt-2">
+          <span className="text-base sm:text-lg font-semibold text-gray-700 mt-1 sm:mt-2">
             <div className="flex justify-center items-center">
-              <FaRupeeSign />
+              <FaRupeeSign className="text-sm sm:text-base" />
               {price}
             </div>
           </span>
@@ -87,7 +87,7 @@ const ProductCard = ({ id, images, productName, numOfReviews, price, ratings }) 
       <button
         onClick={() => cartHandler(id)}
         disabled={user?.role === "admin"}
-        className={`w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300 mt-4 ${
+        className={`w-full py-1.5 sm:py-2 text-xs sm:text-sm md:text-base bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300 mt-2 sm:mt-4 ${
           user?.role === "admin" ? "cursor-not-allowed opacity-50" : ""
         }`}
       >

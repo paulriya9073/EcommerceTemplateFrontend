@@ -90,44 +90,11 @@ const ChangeLayout = () => {
     
   }
 
-
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-
   return (
     <>
-      <Navbar disableSearch={true} />
-      <div className="w-full h-auto grid grid-cols-12 bg-blue-50">
-        <aside
-          className={`fixed top-0 left-0 z-40 w-full h-full bg-white transition-transform transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-            } md:static md:translate-x-0 md:col-span-2`}
-        >
-          <div className="relative">
-            <AdminSidebar />
-            <button
-              className="absolute top-4 right-4 md:hidden text-black text-2xl p-2 rounded-full"
-              onClick={toggleSidebar}
-            >
-              <FaArrowLeft />
-            </button>
-          </div>
-        </aside>
-        <div
-          className={`md:col-span-10 h-full ${sidebarOpen ? 'hidden md:block' : 'col-span-12'}`}
-        >
-          <div className="w-full h-16 md:h-24 text-xl md:text-3xl flex justify-center items-center">
-            <h1 className="px-4 font-bold">Layout</h1>
-            <button
-              className="md:hidden ml-auto mr-4"
-              onClick={toggleSidebar}
-            >
-              <i className="ri-menu-line text-2xl"></i>
-            </button>
-          </div>
-
+     
           {/* Image upload section */}
-          <div className="flex flex-col gap-6 justify-center items-center image-upload mx-4 my-8">
+          <div className="h-full flex flex-col gap-6 justify-center items-center image-upload mx-4 my-8">
             {/* Logo section */}
             <form className="text-center" onSubmit={handleLogoUpload}>
               <h1 className="text-2xl font-semibold text-gray-700 mb-4">Upload Logo</h1>
@@ -213,7 +180,7 @@ const ChangeLayout = () => {
 
             {/* Display selected slider images */}
             {sliderImages.length > 0 && (
-              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {sliderImages.map((image, index) => (
                   <div key={index} className="relative group">
                     <img
@@ -238,7 +205,7 @@ const ChangeLayout = () => {
             <div className="mt-6">
               <h1 className="text-center text-black font-medium text-2xl pb-6">Slider Images</h1>
               {adminImages && adminImages[0]?.sliderImg?.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                   {adminImages[0].sliderImg.map((image, index) => (
                     <div key={index} className="relative">
                       <img
@@ -261,9 +228,7 @@ const ChangeLayout = () => {
             </div>
 
           </div>
-        </div>
-      </div>
-      <Footer />
+        
     </>
   );
 };
